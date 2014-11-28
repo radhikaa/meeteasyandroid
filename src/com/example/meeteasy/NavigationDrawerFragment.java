@@ -1,19 +1,16 @@
 package com.example.meeteasy;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -24,11 +21,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -36,6 +30,10 @@ import android.widget.Toast;
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
 public class NavigationDrawerFragment extends Fragment {
+	
+	CustomAdapter adapter;
+	FragmentActivity activity;
+    public  ArrayList<NavDrawItem> CustomListViewValuesArr = new ArrayList<NavDrawItem>();
 
     /**
      * Remember the position of the selected item.
@@ -65,8 +63,6 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
-    private TextView user;
-    private TextView[] options;
 
     public NavigationDrawerFragment() {
     }
@@ -74,11 +70,7 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Read in the flag indicating whether or not the user has demonstrated awareness of the
-        // drawer. See PREF_USER_LEARNED_DRAWER for details.
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
+        mUserLearnedDrawer = true;
 
         if (savedInstanceState != null) {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
@@ -101,30 +93,26 @@ public class NavigationDrawerFragment extends Fragment {
             Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
-        
-        options = new TextView[4];
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_defaultcontact);
-		BitmapDrawable userImage = new BitmapDrawable(getResources(),Bitmap.createScaledBitmap(bitmap, 100, 100, true));
-        options[0] = new TextView(getActivity());
-        options[0].setText("Radhikaa");
-		options[0].setTextSize(40);
-		options[0].setTextColor(Color.BLUE);
-		options[0].setCompoundDrawablesWithIntrinsicBounds(userImage, null, null, null);
-        options[1] = new TextView(getActivity());
-        options[1].setText("Your MeetUps");
-        options[1].setTextColor(Color.BLUE);
-        options[2] = new TextView(getActivity());
-        options[2].setTextColor(Color.BLUE);
-        options[2].setText("Feedback");
-        options[3] = new TextView(getActivity());
-        options[3].setTextColor(Color.BLUE);
-        options[3].setText("Settings");
-        
-        mDrawerListView.setAdapter(new ArrayAdapter<TextView>(
-                getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
-                options));
+        activity = getActivity();
+        NavDrawItem item1 = new NavDrawItem();
+        item1.setIcon("ic_defaultcontact");
+        item1.setTitle("Radhikaa");
+        NavDrawItem item2 = new NavDrawItem();
+        //item2.setIcon("ic_defaultcontact");
+        item2.setTitle("Your Meet Ups");
+        NavDrawItem item3 = new NavDrawItem();
+        //item3.setIcon("ic_defaultcontact");
+        item3.setTitle("Feedback");
+        NavDrawItem item4 = new NavDrawItem();
+        //item4.setIcon("ic_defaultcontact");
+        item4.setTitle("Settings");
+        CustomListViewValuesArr.add(item1);
+        CustomListViewValuesArr.add(item2);
+        CustomListViewValuesArr.add(item3);
+        CustomListViewValuesArr.add(item4);
+        Resources res = getResources();
+        adapter = new CustomAdapter(activity, CustomListViewValuesArr,res);
+        mDrawerListView.setAdapter(adapter);
         return mDrawerListView;
     }
 

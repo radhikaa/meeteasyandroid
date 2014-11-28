@@ -2142,7 +2142,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f080045;
         public static final int action_mode_bar_stub=0x7f080044;
         public static final int action_mode_close_button=0x7f080038;
-        public static final int action_settings=0x7f08005a;
+        public static final int action_settings=0x7f08005c;
         public static final int activity_chooser_view_content=0x7f080039;
         public static final int always=0x7f08001e;
         public static final int beginning=0x7f080023;
@@ -2178,6 +2178,7 @@ containing a value of this type.
         public static final int left=0x7f080033;
         public static final int listMode=0x7f080014;
         public static final int list_item=0x7f08003c;
+        public static final int map=0x7f080059;
         public static final int match_parent=0x7f08000c;
         public static final int middle=0x7f080024;
         public static final int mini=0x7f080031;
@@ -2203,7 +2204,7 @@ containing a value of this type.
         public static final int search_plate=0x7f080050;
         public static final int search_src_text=0x7f080051;
         public static final int search_voice_btn=0x7f080055;
-        public static final int section_label=0x7f080059;
+        public static final int section_label=0x7f08005a;
         public static final int selectionDetails=0x7f08000b;
         public static final int shortcut=0x7f080041;
         public static final int showCustom=0x7f08001a;
@@ -2214,6 +2215,7 @@ containing a value of this type.
         public static final int submit_area=0x7f080053;
         public static final int tabMode=0x7f080015;
         public static final int terrain=0x7f080003;
+        public static final int text=0x7f08005b;
         public static final int title=0x7f08003e;
         public static final int top=0x7f080026;
         public static final int up=0x7f080029;
@@ -2274,7 +2276,8 @@ containing a value of this type.
         public static final int activity_main=0x7f030017;
         public static final int fragment_main=0x7f030018;
         public static final int fragment_navigation_drawer=0x7f030019;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
+        public static final int nav_draw_item_view=0x7f03001a;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
     }
     public static final class menu {
         public static final int global=0x7f0c0000;
