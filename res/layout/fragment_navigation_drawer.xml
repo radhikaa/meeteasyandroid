@@ -4,6 +4,6 @@
     android:layout_height="match_parent"
     android:background="#000000"
     android:choiceMode="singleChoice"
-    android:divider="@android:color/transparent"
+    android:divider="@android:color/black"
     android:dividerHeight="0dp"
     tools:context="com.example.meeteasy.NavigationDrawerFragment" />
